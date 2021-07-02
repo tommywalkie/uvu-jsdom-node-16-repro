@@ -24,3 +24,5 @@ Sample.test.tsx
 
 Error: The action has timed out.
 ```
+
+Related thread: [lukeed/uvu#124](https://github.com/lukeed/uvu/issues/124)
