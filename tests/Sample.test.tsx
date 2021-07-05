@@ -1,7 +1,7 @@
 import React from "react";
 import { test } from "uvu";
 import * as assert from "uvu/assert";
-// import * as ENV from "./setup";
+import * as ENV from "./setup";
 import { render as renderJSX, screen } from "@testing-library/react";
 import { Processor } from "windicss/lib";
 import { HTMLParser } from "windicss/utils/parser";
@@ -16,7 +16,7 @@ test.after(() => {
 
 test.before.each(() => {
   console.log('>> BEFORE');
-  // ENV.reset();
+  ENV.reset();
 });
 
 test.after.each(() => {
@@ -46,7 +46,6 @@ test('sum', () => {
 	assert.is(1 + 1, 2);
 });
 
-/*
 test('render a React component', () => {
 	const Sample: React.FC = () => {
 		return <div>Hello world</div>
@@ -55,6 +54,7 @@ test('render a React component', () => {
 	assert.ok(screen.getByText('Hello world'));
 });
 
+/*
 test('render a React component and register WindiCSS styles', () => {
 	const Sample: React.FC = () => {
 		return <div className="px-2">Hello world</div>
