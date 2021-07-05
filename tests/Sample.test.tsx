@@ -12,6 +12,7 @@ test.before(() => {
 
 test.after(() => {
   console.log('CLEANUP');
+  process.exit();
 });
 
 test.before.each(() => {
