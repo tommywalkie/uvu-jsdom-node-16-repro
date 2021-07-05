@@ -54,7 +54,6 @@ test('render a React component', () => {
 	assert.ok(screen.getByText('Hello world'));
 });
 
-/*
 test('render a React component and register WindiCSS styles', () => {
 	const Sample: React.FC = () => {
 		return <div className="px-2">Hello world</div>
@@ -63,6 +62,5 @@ test('render a React component and register WindiCSS styles', () => {
 	assert.ok(screen.getByText('Hello world'));
   assert.is(document.head.innerHTML, '<style>.px-2{padding-left:0.5rem;padding-right:0.5rem}</style>');
 });
-*/
 
 test.run();

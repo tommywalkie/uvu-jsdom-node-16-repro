@@ -1,22 +1,15 @@
-// @ts-nocheck
 import { JSDOM } from 'jsdom';
 
 export const jsdom = new JSDOM();
+const {window} = jsdom
 
-global.window = jsdom.window;
-global.document = jsdom.window.document;
-global.navigator = jsdom.window.navigator;
-global.getComputedStyle = jsdom.window.getComputedStyle;
-
-let i = 0, j = 0;
-global.requestAnimationFrame = function(_) {
-  i++;
-  return i;
-};
-global.cancelAnimationFrame = function(_) {
-  j++;
-  return j;
-};
+// @ts-expect-error TS2322 🤷‍♂️
+global.window = window
+global.document = window.document
+// @ts-expect-error TS2740 🤷‍♂️
+global.navigator = {userAgent: 'node.js'}
+global.requestAnimationFrame = callback => setTimeout(callback, 0)
+global.cancelAnimationFrame = id => clearTimeout(id)
 
 export function reset() {
   window.document.title = '';
