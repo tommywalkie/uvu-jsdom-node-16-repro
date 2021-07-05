@@ -6,7 +6,22 @@ import { render as renderJSX, screen } from "@testing-library/react";
 import { Processor } from "windicss/lib";
 import { HTMLParser } from "windicss/utils/parser";
 
-test.before.each(ENV.reset);
+test.before(() => {
+  console.log('SETUP');
+});
+
+test.after(() => {
+  console.log('CLEANUP');
+});
+
+test.before.each(() => {
+  console.log('>> BEFORE');
+  ENV.reset();
+});
+
+test.after.each(() => {
+  console.log('>> AFTER');
+});
 
 /**
  * Render React node around a JSDOM context, while applying
