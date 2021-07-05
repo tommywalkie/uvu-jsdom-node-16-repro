@@ -1,10 +1,11 @@
+import "./setup";
 import React from "react";
 import { test } from "uvu";
 import * as assert from "uvu/assert";
-import { reset } from "./setup";
 import { render as renderJSX, screen } from "@testing-library/react";
 import { Processor } from "windicss/lib";
 import { HTMLParser } from "windicss/utils/parser";
+import { reset } from "./setup";
 
 test.before.each(reset);
 
