@@ -1,28 +1,12 @@
 import React from "react";
 import { test } from "uvu";
 import * as assert from "uvu/assert";
-import * as ENV from "./setup";
+import { reset } from "./setup";
 import { render as renderJSX, screen } from "@testing-library/react";
 import { Processor } from "windicss/lib";
 import { HTMLParser } from "windicss/utils/parser";
 
-test.before(() => {
-  console.log('SETUP');
-});
-
-test.after(() => {
-  console.log('CLEANUP');
-  process.exit();
-});
-
-test.before.each(() => {
-  console.log('>> BEFORE');
-  ENV.reset();
-});
-
-test.after.each(() => {
-  console.log('>> AFTER');
-});
+test.before.each(reset);
 
 /**
  * Render React node around a JSDOM context, while applying
