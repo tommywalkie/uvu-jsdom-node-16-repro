@@ -1,31 +1,10 @@
 import React from "react";
 import { test } from "uvu";
 import * as assert from "uvu/assert";
-import { JSDOM } from 'jsdom';
+import * as ENV from "./setup";
 import { render as renderJSX, screen } from "@testing-library/react";
 import { Processor } from "windicss/lib";
 import { HTMLParser } from "windicss/utils/parser";
-
-const jsdom = new JSDOM();
-const {window} = jsdom;
-
-// @ts-expect-error TS2322
-global.window = window;
-global.document = window.document;
-// @ts-expect-error TS2740
-global.navigator = {userAgent: 'node.js'};
-global.requestAnimationFrame = callback => setTimeout(callback, 0);
-global.cancelAnimationFrame = id => clearTimeout(id);
-
-function reset() {
-  window.document.title = '';
-  window.document.head.innerHTML = '';
-  window.document.body.innerHTML = '<main></main>';
-
-  jsdom.reconfigure({
-    url: 'https://www.test.com/',
-  });
-}
 
 test.before(() => {
   console.log('SETUP');
@@ -33,11 +12,12 @@ test.before(() => {
 
 test.after(() => {
   console.log('CLEANUP');
+  process.exit();
 });
 
 test.before.each(() => {
   console.log('>> BEFORE');
-  reset();
+  ENV.reset();
 });
 
 test.after.each(() => {
