@@ -7,11 +7,15 @@ global.window = jsdom.window;
 global.document = jsdom.window.document;
 global.navigator = jsdom.window.navigator;
 global.getComputedStyle = jsdom.window.getComputedStyle;
-global.requestAnimationFrame = function(callback) {
-  setTimeout(callback, 0);
+
+let i = 0, j = 0;
+global.requestAnimationFrame = function(_) {
+  i++;
+  return i;
 };
-global.cancelAnimationFrame = function(callback) {
-  setTimeout(callback, 0);
+global.cancelAnimationFrame = function(_) {
+  j++;
+  return j;
 };
 
 export function reset() {
