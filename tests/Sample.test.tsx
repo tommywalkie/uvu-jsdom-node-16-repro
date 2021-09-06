@@ -9,6 +9,13 @@ import { reset } from "./setup";
 
 test.before.each(reset);
 
+// Workaround from https://github.com/lukeed/uvu/issues/124#issuecomment-912070397
+test.after(() => {
+  setTimeout(() => {
+    process.exit(0);
+  }, 500);
+});
+
 /**
  * Render React node around a JSDOM context, while applying
  * appropriate WindiCSS styles.
